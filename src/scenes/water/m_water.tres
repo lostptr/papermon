@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://scenes/water/sha_water.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/water/tex_displacement.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/main_color = Color( 0.301961, 0.541176, 0.917647, 1 )
+shader_param/intersection_color = Color( 0.992157, 0.996078, 1, 1 )
+shader_param/intersection_max_threshold = 0.8
+shader_param/displ_amount = 0.6
+shader_param/near = 0.15
+shader_param/far = 300.0
+shader_param/speed = 0.1
+shader_param/displ_tex = ExtResource( 2 )

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/camera/Camera.gd" type="Script" id=1]
+
+[node name="Camera" type="Camera"]
+transform = Transform( 0.550524, -0.216799, 0.806177, 0, 0.96569, 0.259696, -0.834819, -0.142969, 0.531636, 5.465, 4.777, 3.542 )
+current = true
+script = ExtResource( 1 )
