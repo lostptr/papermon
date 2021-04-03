@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
 
 [ext_resource path="res://scenes/grass/sha_grass.shader" type="Shader" id=1]
+[ext_resource path="res://scenes/grass/tex_worley.jpg" type="Texture" id=2]
 
 [resource]
 shader = ExtResource( 1 )
@@ -11,3 +12,4 @@ shader_param/wind_speed = 1.0
 shader_param/wind_dir = Vector3( 0, 0, -1 )
 shader_param/deg_sway_pitch = 10.0
 shader_param/deg_sway_yaw = 45.0
+shader_param/worley_tex = ExtResource( 2 )

@@ -3,10 +3,10 @@ extends MultiMeshInstance
 
 const MeshFactory = preload("res://scenes/grass/mesh_factory.gd")
 
-export var span: Vector2 = Vector2(5.0, 5.0) setget set_span
-export var density: int = 80 setget set_density
-export var width: Vector2 = Vector2(0.01, 0.02) setget set_width
-export var height: Vector2 = Vector2(0.04, 0.08) setget set_height
+export var span: Vector2 = Vector2(1.0, 1.0) setget set_span
+export var density: int = 65 setget set_density
+export var width: Vector2 = Vector2(0.3, 0.5) setget set_width
+export var height: Vector2 = Vector2(0.4, 0.6) setget set_height
 export var sway_yaw: Vector2 = Vector2(0.0, 10.0) setget set_sway_yaw
 export var sway_pitch: Vector2 = Vector2(0.0, 10.0) setget set_sway_pitch
 

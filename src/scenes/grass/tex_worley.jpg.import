@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tex_tree.png-e4f3db76e13ccc0d5c366c30358d00c6.stex"
+path="res://.import/tex_worley.jpg-f764efcec028dc276f1f26523d9965ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/tree/tex_tree.png"
-dest_files=[ "res://.import/tex_tree.png-e4f3db76e13ccc0d5c366c30358d00c6.stex" ]
+source_file="res://scenes/grass/tex_worley.jpg"
+dest_files=[ "res://.import/tex_worley.jpg-f764efcec028dc276f1f26523d9965ed.stex" ]
 
 [params]
 
@@ -19,11 +19,11 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=2
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

@@ -10,7 +10,7 @@ var offset: Vector3
 func _ready() -> void:
 	offset = translation - target.translation
 
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	translation = lerp(translation, target.translation + offset, smoothing)
 
 

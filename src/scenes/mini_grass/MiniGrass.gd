@@ -8,19 +8,11 @@ func reset():
 	if get_node_or_null("GrassMesh") != null:
 		$GrassMesh.multimesh = null
 		$GrassMesh.rebuild()
-	if get_node_or_null("UnderPlane") != null:
-		$UnderPlane.mesh = PlaneMesh.new()
 
 func set_span(new_value: Vector2):
 	span = new_value
 	if get_node_or_null("GrassMesh") != null:
 		$GrassMesh.span = span
-
-	if get_node_or_null("UnderPlane") != null:
-		$UnderPlane.mesh = PlaneMesh.new()
-		$UnderPlane.mesh.size = span * 2
-		$UnderPlane.mesh.subdivide_width = 32;
-		$UnderPlane.mesh.subdivide_depth = 32;
 
 func set_reset_meshes(_new_value: bool):
 	reset()

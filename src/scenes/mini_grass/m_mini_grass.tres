@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://scenes/mini_grass/sha_mini_grass.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/color_top = Color( 0.266667, 0.647059, 0.388235, 1 )
+shader_param/color_bottom = Color( 0.0313726, 0.356863, 0.4, 1 )
