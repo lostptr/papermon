@@ -1,0 +1,123 @@
+[gd_resource type="VisualShader" load_steps=11 format=2]
+
+[sub_resource type="VisualShaderNodeInput" id=8]
+output_port_for_preview = 0
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeInput" id=9]
+input_name = "world"
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id=10]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeVectorDerivativeFunc" id=1]
+output_port_for_preview = 0
+function = 2
+
+[sub_resource type="VisualShaderNodeVectorDerivativeFunc" id=2]
+output_port_for_preview = 0
+function = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id=4]
+output_port_for_preview = 0
+operator = 8
+
+[sub_resource type="VisualShaderNodeVectorFunc" id=5]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeInput" id=6]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeTextureUniform" id=11]
+uniform_name = "Noise"
+
+[sub_resource type="VisualShaderNodeTexture" id=12]
+
+[resource]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+uniform sampler2D Noise;
+uniform sampler2D tex_vtx_4;
+
+
+
+void vertex() {
+// Input:2
+	vec3 n_out2p0 = VERTEX;
+
+// TextureUniform:3
+	vec3 n_out3p0;
+	float n_out3p1;
+	{
+		vec4 n_tex_read = texture(Noise, UV.xy);
+		n_out3p0 = n_tex_read.rgb;
+		n_out3p1 = n_tex_read.a;
+	}
+
+// Texture:4
+	vec4 tex_vtx_4_read = texture(tex_vtx_4, n_out2p0.xy);
+	vec3 n_out4p0 = tex_vtx_4_read.rgb;
+	float n_out4p1 = tex_vtx_4_read.a;
+
+// Output:0
+	VERTEX = n_out4p0;
+
+}
+
+void fragment() {
+// Input:12
+	mat4 n_out12p0 = WORLD_MATRIX;
+
+// Input:11
+	vec3 n_out11p0 = VERTEX;
+
+// VectorDerivativeFunc:2
+	vec3 n_out2p0 = dFdy(n_out11p0);
+
+// VectorDerivativeFunc:3
+	vec3 n_out3p0 = dFdx(n_out11p0);
+
+// VectorOp:5
+	vec3 n_out5p0 = cross(n_out2p0, n_out3p0);
+
+// VectorFunc:6
+	vec3 n_out6p0 = normalize(n_out5p0);
+
+// TransformVectorMult:13
+	vec3 n_out13p0 = (n_out12p0 * vec4(n_out6p0, 1.0)).xyz;
+
+// Output:0
+	NORMAL = n_out13p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -565, 8 )
+nodes/vertex/2/node = SubResource( 6 )
+nodes/vertex/2/position = Vector2( -386, 135 )
+nodes/vertex/3/node = SubResource( 11 )
+nodes/vertex/3/position = Vector2( -320, 260 )
+nodes/vertex/4/node = SubResource( 12 )
+nodes/vertex/4/position = Vector2( -20, 120 )
+nodes/vertex/connections = PoolIntArray( 3, 2, 4, 2, 2, 0, 4, 0, 4, 0, 0, 0 )
+nodes/fragment/0/position = Vector2( 1040, 100 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( -120, 140 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( -120, 320 )
+nodes/fragment/5/node = SubResource( 4 )
+nodes/fragment/5/position = Vector2( 178, 247.25 )
+nodes/fragment/6/node = SubResource( 5 )
+nodes/fragment/6/position = Vector2( 380, 280 )
+nodes/fragment/11/node = SubResource( 8 )
+nodes/fragment/11/position = Vector2( -580, 200 )
+nodes/fragment/12/node = SubResource( 9 )
+nodes/fragment/12/position = Vector2( 440, 120 )
+nodes/fragment/13/node = SubResource( 10 )
+nodes/fragment/13/position = Vector2( 713, 246.25 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 5, 0, 3, 0, 5, 1, 5, 0, 6, 0, 11, 0, 2, 0, 11, 0, 3, 0, 6, 0, 13, 1, 12, 0, 13, 0, 13, 0, 0, 7 )

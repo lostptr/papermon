@@ -1,29 +1,27 @@
 shader_type spatial;
 
-uniform vec4 main_color : hint_color;
-uniform vec4 intersection_color : hint_color;
-uniform float intersection_max_threshold = 0.5;
-uniform sampler2D displ_tex : hint_white;
-uniform float displ_amount = 0.6;
-uniform float near = 0.15;
-uniform float far = 300.0;
-uniform float speed = 1.0;
+uniform vec4 out_color : hint_color;
+uniform sampler2D noise: hint_white;
+uniform float wave_speed : hint_range(0, 1);
+uniform float height_modifier : hint_range(0, 5);
 
-float linearize(float c_depth) {
-	c_depth = 2.0 * c_depth - 1.0;
-	return near * far / (far + c_depth * (near - far));
+
+vec3 wave(vec3 vertex, float time) {
+//	float xd = texture(noise, vertex.xz + (time);
+	float yd = texture(noise, vertex.xz + (time)).x;
+//	float zd = texture(noise, vertex.xz + (time);
+	vertex.y = (yd * height_modifier) - (height_modifier / 2.0);
+	return vertex;
 }
 
-void fragment()
-{
-	float zdepth = linearize(texture(DEPTH_TEXTURE, SCREEN_UV).x);
-	float zpos = linearize(FRAGCOORD.z);
-	float diff = zdepth - zpos;
-	
-	vec2 displ = texture(displ_tex, UV - (TIME * speed)).rg;
-	displ = ((displ * 2.0) - 1.0) * displ_amount;
-	diff += displ.x;
-	
-	vec4 col = mix(intersection_color, main_color, step(intersection_max_threshold, diff));
-	ALBEDO = col.rgb;
+void vertex() {
+	VERTEX = wave(VERTEX, TIME * wave_speed);
+}
+
+void fragment() {
+	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
+	METALLIC = 0.4;
+	SPECULAR = 0.6;
+	ROUGHNESS = 0.2;
+	ALBEDO = out_color.rgb;
 }
