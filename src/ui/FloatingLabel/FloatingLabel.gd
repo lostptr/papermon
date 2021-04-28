@@ -1,6 +1,7 @@
 extends PanelContainer
 
 export var anchor_path: NodePath
+export(String, MULTILINE) var text: String setget set_text
 
 onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -31,3 +32,7 @@ func reposition_label() -> void:
 			anchor.global_transform.origin
 		)
 	)
+
+func set_text(value: String):
+	text = value
+	$VBoxContainer/Label.text = value

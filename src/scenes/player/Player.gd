@@ -8,13 +8,16 @@ onready var animState = anim.get("parameters/playback")
 
 var input: Vector3
 var velocity: Vector3
+var frozen: bool = false
 
 func _ready() -> void:
+	Globals.player = self
 	anim.active = true
 
 func _process(delta: float) -> void:
-	get_input()
-	handle_anim()
+	if not frozen:
+		get_input()
+		handle_anim()
 
 func _physics_process(delta: float) -> void:
 	velocity = input.normalized() * speed
@@ -41,3 +44,10 @@ func handle_anim():
 		animState.travel("Walk")
 	else:
 		animState.travel("Idle")
+
+func freeze():
+	frozen = true
+	input = Vector3.ZERO
+
+func unfreeze():
+	frozen = false

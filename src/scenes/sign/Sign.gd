@@ -1,11 +1,14 @@
 extends Spatial
 
+export(String, MULTILINE) var text: String
+
 onready var label: Control = $FloatingLabel
 
 var in_area: bool setget set_in_area
 
 func _ready() -> void:
 	self.in_area = false
+	self.label.text = text
 
 func _on_Area_body_entered(body: Node) -> void:
 	self.in_area = true

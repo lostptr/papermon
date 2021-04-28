@@ -21,7 +21,7 @@ void vertex() {
 void fragment() {
 	NORMAL = normalize(cross(dFdx(VERTEX), dFdy(VERTEX)));
 	METALLIC = 0.4;
-	SPECULAR = 0.6;
-	ROUGHNESS = 0.2;
+	SPECULAR = 0.8;
+	ROUGHNESS = 0.0;
 	ALBEDO = out_color.rgb;
 }

@@ -3,9 +3,9 @@
 [ext_resource path="res://scenes/water/m_water.tres" type="Material" id=1]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 52, 20 )
-subdivide_width = 26
-subdivide_depth = 10
+size = Vector2( 100, 20 )
+subdivide_width = 120
+subdivide_depth = 20
 
 [node name="Water" type="Spatial"]
 
